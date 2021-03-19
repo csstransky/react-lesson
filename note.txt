@@ -65,3 +65,23 @@ function App() {
     </div>
   );
 }
+
+
++ Every React component has access to an Object called "props" (it can be any name, but it's the first
+input variable to a component):
+function Header(props) {
+  return (
+    <header>
+      <h1>{props.name}'s Kitchen</h1>
+    </header>
+  );
+}
+function App() {
+  return (
+    <div className="App">
+      <Header name="Cristian"/>
+      <Main adjective="amazing"/>
+      <Footer year={new Date().getFullYear()}/>
+    </div>
+  );
+}

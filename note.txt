@@ -28,3 +28,22 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
+
++ Use JSX (JS as XML) to avoid nesting
++ Let's you write tags directly into the .js files (looks a lot like HTML)
+ReactDOM.render(
+  <ul>
+      <li>Monday</li>
+      <li>Tuesday</li>
+      <li>Wednesday</li>
+  </ul>,
+  document.getElementById("root")
+);
++ NOTE: JSX does not actually run natively in HTML (of course)
+
++ Babel is what it's called to get JSX working behind the scenes
+https://babeljs.io/repl
++ This is what the code above would look like in Babel (and why we use JSX instead):
+ReactDOM.render( /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Monday"), /*#__PURE__*/React.createElement("li", null, "Tuesday"), /*#__PURE__*/React.createElement("li", null, "Wednesday")), document.getElementById("root"));
+
+

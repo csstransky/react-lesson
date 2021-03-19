@@ -101,3 +101,39 @@ function Main(props) {
     </section>
   );
 }
+
+
++ Whenever rendering an Array using something like ".map" it's best practice to include a "key" in the <li> element
++ You *could* just add an index, but it's actually better to iterate over a list of Objects
+(instead of just Strings), and use something like "dishes.id" and "dishes.title" instead
+const dishes = [
+  "Macaroni and Cheese",
+  "Salmon",
+  "Tofu with Vegetables"
+];
+const dishObjects = dishes.map((dish, ii) => ({id: ii, title: dish}));
+
+function App() {
+  return (
+    <div className="App">
+      <Header name="Horacio" />
+      <Main adjective="amazing" dishes={dishObjects} />
+      <Footer year={new Date().getFullYear()} />
+    </div>
+  );
+}
+
+function Main(props) {
+  return (
+    <section>
+      <p>
+        We serve the most {props.adjective} food around.
+      </p>
+      <ul style={{ textAlign: "left" }}>
+        {props.dishes.map((dish) => (
+          <li key={dish.id}>{dish.title}</li>
+        ))}
+      </ul>
+    </section>
+  );
+}

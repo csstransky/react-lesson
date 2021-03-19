@@ -19,3 +19,12 @@ $ npm start
 
 + type "react.new" in a browser to go to a cool website that let's you make React stuff
 
+
++ <React.StrictMode> will warn you when you're not following the best practices for React
++ The first element sent to ReactDOM.render(..., ...) is what we want to create (usually an app.js script)
++ The second element tells you where that element is going to be injected
+ReactDOM.render(
+  React.createElement("h1", {style: {color: "magenta"}}, "Hello from the Children."),
+  document.getElementById("root")
+);
+

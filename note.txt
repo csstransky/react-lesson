@@ -137,3 +137,12 @@ function Main(props) {
     </section>
   );
 }
+
+
+
++ You can import images through either a URL or locally in the "src" folder
++ Small note, you can't have images anywhere outside of the src folder for it to properly import
+import friends from "./friends.jpg"
+<img src={friends} height={200} alt="Friends Lego Boxset"/>
++ Important thing to note, for best practice, you need to include an "alt" tag for the description of
+the image to help out people using text-to-speech apps or other CLI apps that make life easier for them

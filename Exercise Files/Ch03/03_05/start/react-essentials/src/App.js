@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import friends from "./friends.jpg"
 
 function Header(props) {
   return (
@@ -15,6 +16,7 @@ function Main(props) {
       <p>
         We serve the most {props.adjective} food around.
       </p>
+        <img src={friends} height={200} alt="Friends Lego Boxset"/>
       <ul style={{ textAlign: "left" }}>
         {props.dishes.map(dish => (
           <li key={dish.id}>{dish.title}</li>

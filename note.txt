@@ -85,3 +85,19 @@ function App() {
     </div>
   );
 }
+
++ Because of how JSX is flexible, you can add quick styles and even iterate through a list by making sure
+to use the curly braces, and returning JSX style HTML:
++ This will
+function Main(props) {
+  return (
+    <section>
+      <p>
+        We serve the most {props.adjective} food around.
+      </p>
+        <ul style={{ textAlign: "left" }}>
+            {props.dishes.map(dish => <li>{dish}</li>)}
+        </ul>
+    </section>
+  );
+}

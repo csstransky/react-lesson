@@ -47,3 +47,21 @@ https://babeljs.io/repl
 ReactDOM.render( /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Monday"), /*#__PURE__*/React.createElement("li", null, "Tuesday"), /*#__PURE__*/React.createElement("li", null, "Wednesday")), document.getElementById("root"));
 
 
++ Components are created by creating a function, and they will return JSX
++ Essentially, if you create functions that return JSX, then you can use them all together in tandem:
+function Header() {
+    return (
+        <header>
+            <h1>Cristian's Place</h1>
+        </header>
+    )
+}
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <h2>Main</h2>
+      <h3>Footer</h3>
+    </div>
+  );
+}

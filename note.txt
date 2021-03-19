@@ -1,0 +1,21 @@
++ React is a JavaScript library created by Facebook
++ Went opensource in 2013
++ React Native: let's you make native mobile apps
+
++ React docs:
+https://reactjs.org/docs/getting-started.html
+
++ Used by:
+Twitter
+Netflix
+Facebook
+Airbnb
+Microsoft
+
++ Generating a React app:
+$ npx create-react-app <project name>
+$ cd <project name>
+$ npm start
+
++ type "react.new" in a browser to go to a cool website that let's you make React stuff
+

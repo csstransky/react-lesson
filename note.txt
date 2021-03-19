@@ -146,3 +146,32 @@ import friends from "./friends.jpg"
 <img src={friends} height={200} alt="Friends Lego Boxset"/>
 + Important thing to note, for best practice, you need to include an "alt" tag for the description of
 the image to help out people using text-to-speech apps or other CLI apps that make life easier for them
+
+
++ Small thing to note, multiple React components in the ReactDOM.render must be wrapped around something
+in order to work.
++ You *could* use a <div>, but it adds unnecessary clutter to the DOM elements
++ Instead you can use <React.Fragment> to wrap multie React apps, and the best part is that it doesn't
+add anything to the DOM elements
+ReactDOM.render(
+    <React.Fragment>
+        <App /><AppTwo />
+    </React.Fragment>, document.getElementById("root"));
+
++ Even cooler, there's an even easier syntactic sugar that can be used instead:
+ReactDOM.render(
+    <>
+        <App /><AppTwo />
+    </>, document.getElementById("root"));
+    
++ Fragments can actually be used in the other parts of JSX as well, so don't be afraid to do something like
+this:
+function App() {
+  return (
+    <>
+      <Header name="Horacio" />
+      <Main adjective="amazing" dishes={dishObjects} />
+      <Footer year={new Date().getFullYear()} />
+    </>
+  );
+}

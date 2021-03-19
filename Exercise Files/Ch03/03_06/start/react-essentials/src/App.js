@@ -51,11 +51,11 @@ const dishObjects = dishes.map((dish, i) => ({
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header name="Horacio" />
       <Main adjective="amazing" dishes={dishObjects} />
       <Footer year={new Date().getFullYear()} />
-    </div>
+    </>
   );
 }
 

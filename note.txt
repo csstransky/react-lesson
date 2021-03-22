@@ -260,3 +260,24 @@ function App() {
 
 + The above function will essentially change the State of the "checked" value
 by using the made "toggle" function
+
+
+
+
++ Of course, because fetch is so important, here's how it can be used to change State
+on API calls:
+function App({ login }) {
+    const [data, setData] = useState(null);
+    // Inits right at the beginning of page load
+    useEffect(() => {
+        fetch(`https://api.github.com/users/${login}`)
+            .then((response) => response.json())
+            .then(setData)
+    }, []);
+
+  return (
+    <>
+        {JSON.stringify(data)}
+    </>
+  );
+}

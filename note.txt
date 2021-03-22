@@ -311,3 +311,11 @@ function App({ login }) {
   if (loading) return <h1>Loading...</h1>;
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
   if (!data) return null;
+
+
+
++ React has a good amount of testing ability, below is a link to the docs:
+https://reactjs.org/docs/testing.html
++ Obviously, any file that ends in ".test.js" is a test file
++ And to run the test command, it's obviously:
+$ npm test

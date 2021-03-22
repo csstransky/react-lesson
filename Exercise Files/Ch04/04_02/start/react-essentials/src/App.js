@@ -11,10 +11,11 @@ function RegularComponent() {
   return <h1>Everyone can see this component.</h1>;
 }
 
-function App(props) {
+function App({authorized}) {
+  console.log(authorized);
   return (
     <>
-      {props.authorized ? (
+      {authorized ? (
         <SecretComponent />
       ) : (
         <RegularComponent />

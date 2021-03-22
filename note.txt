@@ -190,3 +190,20 @@ function App(props) {
   )
 }
 
++ Quick note, array deconstruction is when you give variables to specific array values:
+const [mostImportantItem,,lamplol] = ["boots", "tent", "headlamp"];
+console.log(mostImportantItem, lamplol);
++ Array deconstruction can be used for properties of a DOM too:
+function App({authorized}) {
+  console.log(authorized);
+  return (
+    <>
+      {authorized ? (
+        <SecretComponent />
+      ) : (
+        <RegularComponent />
+      )}
+    </>
+  );
+}
+

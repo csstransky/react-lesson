@@ -401,3 +401,6 @@ function App() {
    </div>
   );
 }
+
++ A 404 page can be added by using the special "*" character for path:
+      <Route path={"*"} element={<Whoops404 />}/>

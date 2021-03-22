@@ -379,3 +379,25 @@ test("Selecting checkbox", () => {
 
 + You can determine routes in React to different pages by using React Router
 $ npm install react-router@next react-router-dom@next
++ In order to use Router, you'll need to wrap the Application in Router tags:
+//index.js
+ReactDOM.render(
+    <Router>
+        <App login="eveporcello" />
+    </Router>,
+  document.getElementById("root")
+);
+
++ Then you can use routes to determine what gets loaded onto the page:
+function App() {
+  return (
+   <div>
+     <Routes>
+       <Route path="/" element={<Home />}/>
+       <Route path={"/about" } element={<About />}/>
+       <Route path={"/events"} element={<Events />}/>
+       <Route path={"/contact"} element={<Contact />}/>
+     </Routes>
+   </div>
+  );
+}

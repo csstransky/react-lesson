@@ -362,3 +362,16 @@ test("renders an h1", () => {
     const h1 = getByText(/Hello React Testing Library lol/)
     expect(h1).toHaveTextContent("Hello React Testing Library lol");
 })
+
+
++ It's even possible to use mouse click events to test things:
+import React from "react"
+import {render, fireEvent} from "@testing-library/react";
+import { Checkbox } from "./Checkbox"
+
+test("Selecting checkbox", () => {
+    const { getByLabelText } = render(<Checkbox />);
+    const checkbox = getByLabelText(/not checked/);
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toEqual(true);
+})

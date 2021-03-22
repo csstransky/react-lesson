@@ -441,3 +441,12 @@ export function About() {
 
 + Final URL to get to the Services page is as follows:
 http://localhost:3000/about/services
+
+
+++ Documents
++ React documentation:
+https://reactjs.org
++ React natively for Android and iOS
+https://reactnative.dev
++ Data loading, or predictably loading data into your apps
+https://graphql.org

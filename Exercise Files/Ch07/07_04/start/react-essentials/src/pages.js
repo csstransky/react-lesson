@@ -1,14 +1,14 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import {Link, Outlet, useLocation} from "react-router-dom";
 
 export function Home() {
   return (
     <div>
       <h1>[Company Website]</h1>
       <nav>
-        <Link to="about">About</Link>
-        <Link to="events">Events</Link>
-        <Link to="contact">Contact</Link>
+          <li><Link to="about">About</Link></li>
+          <li><Link to="events">Events</Link></li>
+          <li><Link to="contact">Contact</Link></li>
       </nav>
     </div>
   );
@@ -18,8 +18,36 @@ export function About() {
   return (
     <div>
       <h1>[About]</h1>
+        <Outlet />
+        <li><Link to="services">Services</Link></li>
+        <li><Link to="history">Company History</Link></li>
+        <li><Link to="location">Location</Link></li>
     </div>
   );
+}
+
+export function Services() {
+    return (
+        <div>
+            <h2>Our Services</h2>
+        </div>
+    )
+}
+
+export function CompanyHistory() {
+    return (
+        <div>
+            <h2>Our Company History</h2>
+        </div>
+    );
+}
+
+export function Location() {
+    return (
+        <div>
+            <h2>Our Location</h2>
+        </div>
+    )
 }
 
 export function Events() {

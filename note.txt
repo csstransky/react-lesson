@@ -404,3 +404,40 @@ function App() {
 
 + A 404 page can be added by using the special "*" character for path:
       <Route path={"*"} element={<Whoops404 />}/>
+
++ Routes can obviously become nested, such as this:
+// App.js
+function App() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />}>
+            <Route path={"services"} element={<Services />}/>
+            <Route path={"history"} element={<CompanyHistory />}/>
+            <Route path={"location"} element={<Location />}/>
+        </Route>
+        <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </div>
+  );
+}
+
++ The important thing to note is that the App needs to have an "Outlet" tag
+in order to allow what's in other Components to be displayed in the current App
+// pages.js
+export function About() {
+  return (
+    <div>
+      <h1>[About]</h1>
+        <Outlet />
+        <li><Link to="services">Services</Link></li>
+        <li><Link to="history">Company History</Link></li>
+        <li><Link to="location">Location</Link></li>
+    </div>
+  );
+}
+
++ Final URL to get to the Services page is as follows:
+http://localhost:3000/about/services

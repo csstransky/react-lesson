@@ -207,3 +207,20 @@ function App({authorized}) {
   );
 }
 
++ The React library function "useState" can be used to initiate a state
+import React, { useState } from "react";
+
++ The second variable that returns is a function that changes the state (can be renamed):
+function App() {
+  const [emotion, setEmotion] = useState("happy");
+  console.log(emotion);
+  return (
+    <>
+      <h1>Current emotion is {emotion}</h1>
+        <button onClick={() => setEmotion("happy")}>Happy</button>
+      <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
+        <button onClick={() => setEmotion("enthusiatic")}>Enthuse</button>
+    </>
+  );
+}
++ This examples changes the State change function to "setEmotion"

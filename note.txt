@@ -319,3 +319,17 @@ https://reactjs.org/docs/testing.html
 + Obviously, any file that ends in ".test.js" is a test file
 + And to run the test command, it's obviously:
 $ npm test
+
++ Test functionality and libraries automatically come from Jest when using creat React
++ Here's an example of testing with jest:
+// functions.js
+export function timesTwo(x) {
+    return x * 2;
+}
+
+// function.test.js
+import {timesTwo} from "./functions"
+
+test("Multiplies by two", () => {
+    expect(timesTwo(4)).toBe(8);
+})

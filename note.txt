@@ -375,3 +375,7 @@ test("Selecting checkbox", () => {
     fireEvent.click(checkbox);
     expect(checkbox.checked).toEqual(true);
 })
+
+
++ You can determine routes in React to different pages by using React Router
+$ npm install react-router@next react-router-dom@next

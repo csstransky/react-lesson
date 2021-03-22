@@ -237,3 +237,26 @@ useEffect(() => {
 
 + The above function useEffect will only keep track of changes to the emotion State
 + Small note: putting in no dependencies will keep track of all States
+
+
++ The "useReducer" function can be used to create a function that will change
+the State based of its owned defined logic
+function App() {
+  const [checked, toggle] = useReducer(
+    (checked) => !checked,
+    false
+  );
+  return (
+    <>
+        <input
+           type="checkbox"
+           value={checked}
+           onChange={toggle}>
+        </input>
+        <p>{checked ? "Checked!" : "NOT checked..."}</p>
+    </>
+  );
+}
+
++ The above function will essentially change the State of the "checked" value
+by using the made "toggle" function

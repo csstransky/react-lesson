@@ -333,3 +333,32 @@ import {timesTwo} from "./functions"
 test("Multiplies by two", () => {
     expect(timesTwo(4)).toBe(8);
 })
+
+
+
++ "testing-library" can be used for React by rendering the output
++ In these type of tests, you're checking to see if certain elements are being
+rendered correctly, here's an example:
+// App.js
+import React from "react";
+import "./App.css";
+
+function App() {
+  return (
+    <div>
+      <h1>Hello React Testing Library lol</h1>
+    </div>
+  );
+}
+
+// App.test.js
+import React from "react"
+import { render } from "@testing-library/react"
+import App from "./App.js"
+
+test("renders an h1", () => {
+    const {getByText} = render(<App />);
+    // Those "/.../" slashes are used to check for a regrex
+    const h1 = getByText(/Hello React Testing Library lol/)
+    expect(h1).toHaveTextContent("Hello React Testing Library lol");
+})

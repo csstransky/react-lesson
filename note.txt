@@ -163,7 +163,7 @@ ReactDOM.render(
     <>
         <App /><AppTwo />
     </>, document.getElementById("root"));
-    
+
 + Fragments can actually be used in the other parts of JSX as well, so don't be afraid to do something like
 this:
 function App() {
@@ -175,3 +175,18 @@ function App() {
     </>
   );
 }
+
+
++ You can use conditional logic no problem with JS:
+// index.js
+ReactDOM.render(<App authorization={false}/>, document.getElementById("root"));
+
+// App.js
+function App(props) {
+  return (
+    <>
+      {props.authorization ? <SecretComponent/> : <RegularComponent/>}
+    </>
+  )
+}
+

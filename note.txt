@@ -293,3 +293,21 @@ function App({ login }) {
 
   return <div>No Data Available</div>;
 }
++ You can also add a "then" event to your fetch Promise to essentially change
+"loading" states like below:
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!login) return;
+    setLoading(true);
+    fetch(`https://api.github.com/users/${login}`)
+      .then(response => response.json())
+      .then(setData)
+      .then(() => setLoading(false))
+      .catch(setError);
+  }, [login]);
+
+  if (loading) return <h1>Loading...</h1>;
+  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  if (!data) return null;

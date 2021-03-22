@@ -1,26 +1,27 @@
 import React from "react";
 import "./App.css";
 
-function Header() {
+function Header(props) {
+    console.log(props);
   return (
     <header>
-      <h1>Eve's Kitchen</h1>
+      <h1>{props.name}'s Kitchen</h1>
     </header>
   );
 }
 
-function Main() {
+function Main(propz) {
   return (
     <section>
-      <p>We serve the most delicious food around.</p>
+      <p>We serve the most {propz.adjective} delicious food around.</p>
     </section>
   );
 }
 
-function Footer() {
+function Footer(bigStuff) {
   return (
     <footer>
-      <p>It's true.</p>
+      <p>It's {bigStuff.year}.</p>
     </footer>
   );
 }
@@ -28,9 +29,9 @@ function Footer() {
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Main />
-      <Footer />
+      <Header name="Cristian"/>
+      <Main adjective="amazing"/>
+      <Footer year={new Date().getFullYear()}/>
     </div>
   );
 }

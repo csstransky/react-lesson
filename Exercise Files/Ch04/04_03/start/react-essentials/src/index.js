@@ -1,11 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-
-const [, , light] = ["boots", "tent", "headlamp"];
-console.log(light);
+import App from "./App.js";
 
 ReactDOM.render(
-  <App authorized={true} />,
+  <App  />,
   document.getElementById("root")
 );

@@ -19,3 +19,434 @@ $ npm start
 
 + type "react.new" in a browser to go to a cool website that let's you make React stuff
 
+
++ <React.StrictMode> will warn you when you're not following the best practices for React
++ The first element sent to ReactDOM.render(..., ...) is what we want to create (usually an app.js script)
++ The second element tells you where that element is going to be injected
+ReactDOM.render(
+  React.createElement("h1", {style: {color: "magenta"}}, "Hello from the Children."),
+  document.getElementById("root")
+);
+
+
++ Use JSX (JS as XML) to avoid nesting
++ Let's you write tags directly into the .js files (looks a lot like HTML)
+ReactDOM.render(
+  <ul>
+      <li>Monday</li>
+      <li>Tuesday</li>
+      <li>Wednesday</li>
+  </ul>,
+  document.getElementById("root")
+);
++ NOTE: JSX does not actually run natively in HTML (of course)
+
++ Babel is what it's called to get JSX working behind the scenes
+https://babeljs.io/repl
++ This is what the code above would look like in Babel (and why we use JSX instead):
+ReactDOM.render( /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Monday"), /*#__PURE__*/React.createElement("li", null, "Tuesday"), /*#__PURE__*/React.createElement("li", null, "Wednesday")), document.getElementById("root"));
+
+
++ Components are created by creating a function, and they will return JSX
++ Essentially, if you create functions that return JSX, then you can use them all together in tandem:
+function Header() {
+    return (
+        <header>
+            <h1>Cristian's Place</h1>
+        </header>
+    )
+}
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <h2>Main</h2>
+      <h3>Footer</h3>
+    </div>
+  );
+}
+
+
++ Every React component has access to an Object called "props" (it can be any name, but it's the first
+input variable to a component):
+function Header(props) {
+  return (
+    <header>
+      <h1>{props.name}'s Kitchen</h1>
+    </header>
+  );
+}
+function App() {
+  return (
+    <div className="App">
+      <Header name="Cristian"/>
+      <Main adjective="amazing"/>
+      <Footer year={new Date().getFullYear()}/>
+    </div>
+  );
+}
+
++ Because of how JSX is flexible, you can add quick styles and even iterate through a list by making sure
+to use the curly braces, and returning JSX style HTML:
++ This will
+function Main(props) {
+  return (
+    <section>
+      <p>
+        We serve the most {props.adjective} food around.
+      </p>
+        <ul style={{ textAlign: "left" }}>
+            {props.dishes.map(dish => <li>{dish}</li>)}
+        </ul>
+    </section>
+  );
+}
+
+
++ Whenever rendering an Array using something like ".map" it's best practice to include a "key" in the <li> element
++ You *could* just add an index, but it's actually better to iterate over a list of Objects
+(instead of just Strings), and use something like "dishes.id" and "dishes.title" instead
+const dishes = [
+  "Macaroni and Cheese",
+  "Salmon",
+  "Tofu with Vegetables"
+];
+const dishObjects = dishes.map((dish, ii) => ({id: ii, title: dish}));
+
+function App() {
+  return (
+    <div className="App">
+      <Header name="Horacio" />
+      <Main adjective="amazing" dishes={dishObjects} />
+      <Footer year={new Date().getFullYear()} />
+    </div>
+  );
+}
+
+function Main(props) {
+  return (
+    <section>
+      <p>
+        We serve the most {props.adjective} food around.
+      </p>
+      <ul style={{ textAlign: "left" }}>
+        {props.dishes.map((dish) => (
+          <li key={dish.id}>{dish.title}</li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+
+
++ You can import images through either a URL or locally in the "src" folder
++ Small note, you can't have images anywhere outside of the src folder for it to properly import
+import friends from "./friends.jpg"
+<img src={friends} height={200} alt="Friends Lego Boxset"/>
++ Important thing to note, for best practice, you need to include an "alt" tag for the description of
+the image to help out people using text-to-speech apps or other CLI apps that make life easier for them
+
+
++ Small thing to note, multiple React components in the ReactDOM.render must be wrapped around something
+in order to work.
++ You *could* use a <div>, but it adds unnecessary clutter to the DOM elements
++ Instead you can use <React.Fragment> to wrap multie React apps, and the best part is that it doesn't
+add anything to the DOM elements
+ReactDOM.render(
+    <React.Fragment>
+        <App /><AppTwo />
+    </React.Fragment>, document.getElementById("root"));
+
++ Even cooler, there's an even easier syntactic sugar that can be used instead:
+ReactDOM.render(
+    <>
+        <App /><AppTwo />
+    </>, document.getElementById("root"));
+
++ Fragments can actually be used in the other parts of JSX as well, so don't be afraid to do something like
+this:
+function App() {
+  return (
+    <>
+      <Header name="Horacio" />
+      <Main adjective="amazing" dishes={dishObjects} />
+      <Footer year={new Date().getFullYear()} />
+    </>
+  );
+}
+
+
++ You can use conditional logic no problem with JS:
+// index.js
+ReactDOM.render(<App authorization={false}/>, document.getElementById("root"));
+
+// App.js
+function App(props) {
+  return (
+    <>
+      {props.authorization ? <SecretComponent/> : <RegularComponent/>}
+    </>
+  )
+}
+
++ Quick note, array deconstruction is when you give variables to specific array values:
+const [mostImportantItem,,lamplol] = ["boots", "tent", "headlamp"];
+console.log(mostImportantItem, lamplol);
++ Array deconstruction can be used for properties of a DOM too:
+function App({authorized}) {
+  console.log(authorized);
+  return (
+    <>
+      {authorized ? (
+        <SecretComponent />
+      ) : (
+        <RegularComponent />
+      )}
+    </>
+  );
+}
+
++ The React library function "useState" can be used to initiate a state
+import React, { useState } from "react";
+
++ The second variable that returns is a function that changes the state (can be renamed):
+function App() {
+  const [emotion, setEmotion] = useState("happy");
+  console.log(emotion);
+  return (
+    <>
+      <h1>Current emotion is {emotion}</h1>
+        <button onClick={() => setEmotion("happy")}>Happy</button>
+      <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
+        <button onClick={() => setEmotion("enthusiatic")}>Enthuse</button>
+    </>
+  );
+}
++ This examples changes the State change function to "setEmotion"
+
+
++ React library function "useEffect" is used to get data from things unrelated
+to State, like animation data
++ The first variable is a callback function for state changes, and the second variable
+is all the dependencies to keep track of and watch:
+const [emotion, setEmotion] = useState("happy");
+useEffect(() => {
+   console.log(`It's ${emotion} around here!`)
+}, [emotion]);
+
++ The above function useEffect will only keep track of changes to the emotion State
++ Small note: putting in no dependencies will keep track of all States
+
+
++ The "useReducer" function can be used to create a function that will change
+the State based of its owned defined logic
+function App() {
+  const [checked, toggle] = useReducer(
+    (checked) => !checked,
+    false
+  );
+  return (
+    <>
+        <input
+           type="checkbox"
+           value={checked}
+           onChange={toggle}>
+        </input>
+        <p>{checked ? "Checked!" : "NOT checked..."}</p>
+    </>
+  );
+}
+
++ The above function will essentially change the State of the "checked" value
+by using the made "toggle" function
+
+
+
+
++ Of course, because fetch is so important, here's how it can be used to change State
+on API calls:
+function App({ login }) {
+    const [data, setData] = useState(null);
+    // Inits right at the beginning of page load
+    useEffect(() => {
+        fetch(`https://api.github.com/users/${login}`)
+            .then((response) => response.json())
+            .then(setData)
+    }, []);
+
+  return (
+    <>
+        {JSON.stringify(data)}
+    </>
+  );
+
+  if (data) {
+    return (
+      <div>
+        <h1>{data.name}</h1>
+        <p>{data.location}</p>
+        <img alt={data.login} src={data.avatar_url}/>
+      </div>
+    );
+  }
+
+  return <div>No Data Available</div>;
+}
++ You can also add a "then" event to your fetch Promise to essentially change
+"loading" states like below:
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!login) return;
+    setLoading(true);
+    fetch(`https://api.github.com/users/${login}`)
+      .then(response => response.json())
+      .then(setData)
+      .then(() => setLoading(false))
+      .catch(setError);
+  }, [login]);
+
+  if (loading) return <h1>Loading...</h1>;
+  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  if (!data) return null;
+
+
+
++ React has a good amount of testing ability, below is a link to the docs:
+https://reactjs.org/docs/testing.html
++ Obviously, any file that ends in ".test.js" is a test file
++ And to run the test command, it's obviously:
+$ npm test
+
++ Test functionality and libraries automatically come from Jest when using creat React
++ Here's an example of testing with jest:
+// functions.js
+export function timesTwo(x) {
+    return x * 2;
+}
+
+// function.test.js
+import {timesTwo} from "./functions"
+
+test("Multiplies by two", () => {
+    expect(timesTwo(4)).toBe(8);
+})
+
+
+
++ "testing-library" can be used for React by rendering the output
++ In these type of tests, you're checking to see if certain elements are being
+rendered correctly, here's an example:
+// App.js
+import React from "react";
+import "./App.css";
+
+function App() {
+  return (
+    <div>
+      <h1>Hello React Testing Library lol</h1>
+    </div>
+  );
+}
+
+// App.test.js
+import React from "react"
+import { render } from "@testing-library/react"
+import App from "./App.js"
+
+test("renders an h1", () => {
+    const {getByText} = render(<App />);
+    // Those "/.../" slashes are used to check for a regrex
+    const h1 = getByText(/Hello React Testing Library lol/)
+    expect(h1).toHaveTextContent("Hello React Testing Library lol");
+})
+
+
++ It's even possible to use mouse click events to test things:
+import React from "react"
+import {render, fireEvent} from "@testing-library/react";
+import { Checkbox } from "./Checkbox"
+
+test("Selecting checkbox", () => {
+    const { getByLabelText } = render(<Checkbox />);
+    const checkbox = getByLabelText(/not checked/);
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toEqual(true);
+})
+
+
++ You can determine routes in React to different pages by using React Router
+$ npm install react-router@next react-router-dom@next
++ In order to use Router, you'll need to wrap the Application in Router tags:
+//index.js
+ReactDOM.render(
+    <Router>
+        <App login="eveporcello" />
+    </Router>,
+  document.getElementById("root")
+);
+
++ Then you can use routes to determine what gets loaded onto the page:
+function App() {
+  return (
+   <div>
+     <Routes>
+       <Route path="/" element={<Home />}/>
+       <Route path={"/about" } element={<About />}/>
+       <Route path={"/events"} element={<Events />}/>
+       <Route path={"/contact"} element={<Contact />}/>
+     </Routes>
+   </div>
+  );
+}
+
++ A 404 page can be added by using the special "*" character for path:
+      <Route path={"*"} element={<Whoops404 />}/>
+
++ Routes can obviously become nested, such as this:
+// App.js
+function App() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />}>
+            <Route path={"services"} element={<Services />}/>
+            <Route path={"history"} element={<CompanyHistory />}/>
+            <Route path={"location"} element={<Location />}/>
+        </Route>
+        <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </div>
+  );
+}
+
++ The important thing to note is that the App needs to have an "Outlet" tag
+in order to allow what's in other Components to be displayed in the current App
+// pages.js
+export function About() {
+  return (
+    <div>
+      <h1>[About]</h1>
+        <Outlet />
+        <li><Link to="services">Services</Link></li>
+        <li><Link to="history">Company History</Link></li>
+        <li><Link to="location">Location</Link></li>
+    </div>
+  );
+}
+
++ Final URL to get to the Services page is as follows:
+http://localhost:3000/about/services
+
+
+++ Documents
++ React documentation:
+https://reactjs.org
++ React natively for Android and iOS
+https://reactnative.dev
++ Data loading, or predictably loading data into your apps
+https://graphql.org

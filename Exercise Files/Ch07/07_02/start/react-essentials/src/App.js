@@ -1,16 +1,19 @@
 import React from "react";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { Home, About, Events, Contact } from "./pages"
 
 function App() {
-  if (data) {
-    return (
-      <div>
-        <h1>Hello React Testing Library</h1>
-      </div>
-    );
-  }
-
-  return <div>No Data Available</div>;
+  return (
+   <div>
+     <Routes>
+       <Route path="/" element={<Home />}/>
+       <Route path={"/about" } element={<About />}/>
+       <Route path={"/events"} element={<Events />}/>
+       <Route path={"/contact"} element={<Contact />}/>
+     </Routes>
+   </div>
+  );
 }
 
 export default App;

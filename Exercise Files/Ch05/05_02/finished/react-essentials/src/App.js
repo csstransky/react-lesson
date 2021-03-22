@@ -3,7 +3,7 @@ import "./App.css";
 
 // https://api.github.com/users/eveporcello
 
-function App() {
+function App({ login }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {

@@ -1,23 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
 
+function Header() {
+    return (
+        <header>
+            <h1>Cristian's Place</h1>
+        </header>
+    )
+}
+
+function Main() {
+    return (
+        <section>
+            <p>I'm the person who lives here.</p>
+        </section>
+    )
+}
+
+function Footer() {
+    return (
+        <footer>
+            <p>And I'm all alone.</p>
+        </footer>
+    )
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Main />
+      <Footer />
     </div>
   );
 }

@@ -224,3 +224,16 @@ function App() {
   );
 }
 + This examples changes the State change function to "setEmotion"
+
+
++ React library function "useEffect" is used to get data from things unrelated
+to State, like animation data
++ The first variable is a callback function for state changes, and the second variable
+is all the dependencies to keep track of and watch:
+const [emotion, setEmotion] = useState("happy");
+useEffect(() => {
+   console.log(`It's ${emotion} around here!`)
+}, [emotion]);
+
++ The above function useEffect will only keep track of changes to the emotion State
++ Small note: putting in no dependencies will keep track of all States
